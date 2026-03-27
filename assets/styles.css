@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+    --bg-dark: #0f172a;
+    --panel-bg: rgba(30, 41, 59, 0.7);
+    --accent-blue: #38bdf8;
+    --accent-red: #ef4444;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --field-border: rgba(239, 68, 68, 0.5); /* 붉은색 점선 필드 경계 */
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    overflow: hidden;
+}
+
+.top-menu {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 70px;
+    background: var(--panel-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 32px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+}
+
+.menu-group {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(15, 23, 42, 0.4);
+    padding: 4px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.canvas-container {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 70px);
+    display: block;           /* block so inner absolutely-placed field can scroll in both axes */
+    overflow: auto;           /* Scrollbars appear when field overflows in any direction */
+    background-image: 
+        radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
+    background-size: 40px 40px;
+    background-color: var(--bg-dark);
+}
+
+.exposure-field {
+    position: absolute;       /* absolute so field_offset_x/y control its position */
+    border: 2px dashed var(--accent-red);
+    background-color: rgba(15, 23, 42, 0.5);
+    box-shadow: none !important;
+    transition: all 0.3s ease;
+}
+
+.chip-object {
+    position: absolute;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(56, 189, 248, 0.1));
+    border: 1px solid var(--accent-blue);
+    cursor: move;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none !important;
+    backdrop-filter: blur(4px);
+    transition: border-color 0.2s ease;
+}
+
+.chip-object:hover {
+    border-color: #7dd3fc;
+    box-shadow: none !important;
+    z-index: 100;
+}
+
+.chip-object.selected {
+    border-color: #fff;
+    border-width: 2px;
+    z-index: 101;
+}
+
+.chip-object.colliding {
+    border-color: var(--accent-red);
+    background: rgba(239, 68, 68, 0.2);
+}
+
+.chip-object.locked-chip {
+    border-color: #94a3b8;
+    background: rgba(100, 116, 139, 0.2);
+    border-style: dashed;
+}
+
+.chip-object.measured {
+    border-color: #8b5cf6; /* Violet */
+    background: rgba(139, 92, 246, 0.2);
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.5) !important;
+}
+
+.chip-hud {
+    position: absolute;
+    top: -24px;
+    left: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent-blue);
+    white-space: nowrap;
+    background: rgba(15, 23, 42, 0.8);
+    padding: 2px 6px;
+    border-radius: 4px;
+    pointer-events: none;
+}

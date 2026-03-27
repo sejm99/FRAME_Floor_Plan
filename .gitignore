@@ -1,0 +1,16 @@
+.web
+*.db
+__pycache__/
+assets/external/
+.states
+*.py[cod]
+.venv
+.env
+*.gds
+.ipynb_checkpoints/
+.vscode/
+.idea/
+*.log
+*.zip
+
+*.zip

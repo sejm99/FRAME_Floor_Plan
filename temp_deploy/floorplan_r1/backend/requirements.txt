@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+gdstk
+pandas
+openpyxl
+pydantic
+python-multipart
+a2wsgi
